@@ -79,16 +79,6 @@
 
             },400)
 
-            //  LOCAL Storage
-
-            // Save data to storage 
-
-            chrome.storage.local.set({ "phasersTo": "awesome" }, function(){});
-            
-            chrome.storage.local.get(/* String or Array */["phasersTo"], function(items){
-                  //  items = [ { "phasersTo": "awesome" } ]
-            });
-
       }
 
       if(window.location.href.includes("https://volvoitsm.service-now.com/com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=e7351f31dbb0a8109507a155059619a3")) {
