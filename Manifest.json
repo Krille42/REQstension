@@ -1,0 +1,24 @@
+{
+   "manifest_version": 3,
+   "name": "REQ-stension - Request Extension",
+   "description": "Simplifying Service Now request forms",
+   "version": "1.2.1",
+   "permissions": [
+      "offscreen",
+      "storage"
+   ],
+   "content_scripts": [
+      {
+        "js": ["script/content.js"],
+        "css": ["css/style.css"],
+        "matches": [
+          "https://volvoitsm.service-now.com/com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=e7351f31dbb0a8109507a155059619a3*",
+          "https://volvoitsm.service-now.com/com.glideapp.servicecatalog_checkout_view_v2.do?*",
+          "https://volvoitsm.service-now.com/sc_request.do?*",
+          "https://volvoitsm.service-now.com/sc_req_item.do?*",
+          "https://volvoitsm.service-now.com/sc_task.do?*"
+
+        ]
+      }
+   ]
+ }
