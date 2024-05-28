@@ -128,7 +128,8 @@
                   
             } catch (err) {
 
-                  alert(`No SCTASK found: ${err}`)
+                  alert(`No task has been created yet, please reload page to check again`)
+                  console.log(err)
                   
             }
 
