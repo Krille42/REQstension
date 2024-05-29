@@ -124,7 +124,12 @@
 
             try {
 
-                  window.open(document.getElementsByClassName("linked formlink").item(0).href,"_self")
+                  let link = document.getElementsByClassName("linked formlink").item(0).href
+                  if(link.includes("sc_task.do")) {
+
+                        window.open(link,"_self")
+
+                  }
                   
             } catch (err) {
 
