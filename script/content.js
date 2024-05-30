@@ -129,6 +129,10 @@
 
                         window.open(link,"_self")
 
+                  }else {
+
+                        console.log("This is not the correct link... ", link)
+
                   }
                   
             } catch (err) {
