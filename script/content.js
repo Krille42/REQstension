@@ -131,6 +131,7 @@
 
                   }else {
 
+                        alert(`No task was found, please reload page to check again`)
                         console.log("This is not the correct link... ", link)
 
                   }
