@@ -74,6 +74,8 @@
 
                         document.getElementsByClassName("input-group").item(1).getElementsByTagName("input").item(0).value = service
                         document.getElementsByClassName("input-group").item(1).getElementsByTagName("input").item(0).focus()
+
+                        statusEl.innerHTML = "Done auto-filling fields"
       
                   },500)
 
@@ -81,15 +83,23 @@
 
       }
 
+      // Show status in injected element
+      let statusEl = document.createElement("p")
+      el.style = "display: absolute; top: 1em; width: min-content; margin: auto; padding: 1em; background-color: #666666;"
+      document.body.appendChild(statusEl)
+
       if(window.location.href.includes("https://volvoitsm.service-now.com/com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=e7351f31dbb0a8109507a155059619a3")) {
 
             // if on request creation screen
 
             window.addEventListener ("load", AutofillREQ, false);
 
+            statusEl.innerHTML = "Auto-filling fields"
+
       }else if(window.location.href.includes("https://volvoitsm.service-now.com/com.glideapp.servicecatalog_checkout_view_v2.do?")) {
 
             // if on request submitted screen
+            statusEl.innerHTML = "Finding link"
 
             window.open(document.getElementById("requesturl").href,"_self")
 
@@ -98,6 +108,7 @@
       }else if (window.location.href.includes("https://volvoitsm.service-now.com/sc_request.do?sys_id=")) {
 
             // if on request screen
+            statusEl.innerHTML = "Finding link"
 
             if(document.getElementsByClassName("linked formlink").item(0).innerHTML.includes("RITM")) {
 
@@ -105,7 +116,7 @@
 
             }else {
 
-                  alert("No RITM found")
+                  statusEl.innerHTML = "RITM not found"
 
             }
             
@@ -124,6 +135,8 @@
 
             try {
 
+                  statusEl.innerHTML = "Finding link"
+
                   let link = document.getElementsByClassName("linked formlink").item(0).href
                   if(link.includes("sc_task.do")) {
 
@@ -131,14 +144,13 @@
 
                   }else {
 
-                        alert(`No task was found, please reload page to check again`)
-                        console.log("This is not the correct link... ", link)
+                        statusEl.innerHTML = "No task has been created yet, please reload page to check again"
 
                   }
                   
             } catch (err) {
 
-                  alert(`No task has been created yet, please reload page to check again`)
+                  statusEl.innerHTML = "No task has been created yet, please reload page to check again"
                   console.log(err)
                   
             }
@@ -148,6 +160,7 @@
       }else if (window.location.href.includes("https://volvoitsm.service-now.com/sc_task.do?sys_id=")) {
 
             // if on task screen
+            statusEl.innerHTML = "Auto-filling fields"
 
             // fill task like req above
 
@@ -179,17 +192,24 @@
                                     let element = document.getElementById("activity-stream-comments-textarea")
                                     element.dispatchEvent(e);
 
+                                    statusEl.innerHTML = "Done auto-filling fields"
+
                               }, 200)
                               
                         }, 200);
                         
-
                   }, 200);
 
             });
 
-      }       
+      }
+      
+      // Remove tooltip from display after 10 seconds
+      setTimeout(() => {
 
+            document.body.removeChild(statusEl)
+
+      }, 10000)
 })();
 
 // test links
