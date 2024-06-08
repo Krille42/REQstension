@@ -85,7 +85,7 @@
 
       // Show status in injected element
       let statusEl = document.createElement("p")
-      el.style = "display: absolute; top: 1em; width: min-content; margin: auto; padding: 1em; background-color: #666666;"
+      statusEl.style = "display: absolute; top: 1em; width: min-content; margin: auto; padding: 1em; background-color: #666666;"
       document.body.appendChild(statusEl)
 
       if(window.location.href.includes("https://volvoitsm.service-now.com/com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=e7351f31dbb0a8109507a155059619a3")) {
@@ -165,40 +165,44 @@
             // fill task like req above
 
             chrome.storage.local.get(["openedBy"], function(obj){
-                  
-                  document.getElementById("sys_display.sc_task.assigned_to").value = obj.openedBy
-                  document.getElementById("sys_display.sc_task.assigned_to").focus()
-                  document.getElementById("sys_display.sc_task.cmdb_ci").value = document.getElementById("sys_display.sc_task.service_offering").value
-                  
 
-                  setTimeout(() => {
+                  if (document.getElementById("sc_task.state").value != "3") {
 
-                        document.getElementById("sys_display.sc_task.cmdb_ci").focus()
-                        document.getElementById("sc_task.priority").value = "4"
+                        document.getElementById("sys_display.sc_task.assigned_to").value = obj.openedBy
+                        document.getElementById("sys_display.sc_task.assigned_to").focus()
+                        document.getElementById("sys_display.sc_task.cmdb_ci").value = document.getElementById("sys_display.sc_task.service_offering").value
+                        
+
                         setTimeout(() => {
 
-                              document.getElementById("sc_task.priority").focus()
-                              document.getElementById("sc_task.state").value = "3"
-
-                              let e = new Event("change");
-                              let element = document.getElementById("sc_task.state")
-                              element.dispatchEvent(e);
-
-                              document.getElementById("activity-stream-comments-textarea").value = (document.getElementById("sc_task.description").value != "") ? `${document.getElementById("sc_task.short_description").value}: ${document.getElementById("sc_task.description").value}` : document.getElementById("sc_task.short_description").value;
-
+                              document.getElementById("sys_display.sc_task.cmdb_ci").focus()
+                              document.getElementById("sc_task.priority").value = "4"
                               setTimeout(() => {
 
+                                    document.getElementById("sc_task.priority").focus()
+                                    document.getElementById("sc_task.state").value = "3"
+
                                     let e = new Event("change");
-                                    let element = document.getElementById("activity-stream-comments-textarea")
+                                    let element = document.getElementById("sc_task.state")
                                     element.dispatchEvent(e);
 
-                                    statusEl.innerHTML = "Done auto-filling fields"
+                                    document.getElementById("activity-stream-comments-textarea").value = (document.getElementById("sc_task.description").value != "") ? `${document.getElementById("sc_task.short_description").value}: ${document.getElementById("sc_task.description").value}` : document.getElementById("sc_task.short_description").value;
 
-                              }, 200)
+                                    setTimeout(() => {
+
+                                          let e = new Event("change");
+                                          let element = document.getElementById("activity-stream-comments-textarea")
+                                          element.dispatchEvent(e);
+
+                                          statusEl.innerHTML = "Done auto-filling fields"
+
+                                    }, 200)
+                                    
+                              }, 200);
                               
                         }, 200);
-                        
-                  }, 200);
+
+                  }
 
             });
 
