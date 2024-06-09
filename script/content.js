@@ -75,6 +75,7 @@
                         document.getElementsByClassName("input-group").item(1).getElementsByTagName("input").item(0).value = service
                         document.getElementsByClassName("input-group").item(1).getElementsByTagName("input").item(0).focus()
 
+                        statusEl.style.color = "#328832"
                         statusEl.innerHTML = "Done auto-filling fields"
       
                   },500)
@@ -116,6 +117,7 @@
 
             }else {
 
+                  statusEl.style.color = "#883232"
                   statusEl.innerHTML = "RITM not found"
 
             }
@@ -144,12 +146,14 @@
 
                   }else {
 
+                        statusEl.style.color = "#883232"
                         statusEl.innerHTML = "No task has been created yet, please reload page to check again"
 
                   }
                   
             } catch (err) {
 
+                  statusEl.style.color = "#883232"
                   statusEl.innerHTML = "No task has been created yet, please reload page to check again"
                   console.log(err)
                   
@@ -194,6 +198,7 @@
                                           let element = document.getElementById("activity-stream-comments-textarea")
                                           element.dispatchEvent(e);
 
+                                          statusEl.style.color = "#328832"
                                           statusEl.innerHTML = "Done auto-filling fields"
 
                                     }, 200)
@@ -206,6 +211,7 @@
 
                   }else {
 
+                        statusEl.style.color = "#328832"
                         statusEl.innerHTML = "Task closed"
 
                   }
@@ -214,7 +220,7 @@
 
       }
       
-      // Remove tooltip from display after 10 seconds
+      // Remove tooltip from display after 10 seconds and reset colour
       setTimeout(() => {
 
             document.body.removeChild(statusEl)
