@@ -207,8 +207,6 @@
                               
                         }, 200);
 
-                        statusEl.innerHTML = "Task ready for closure"
-
                   }else {
 
                         statusEl.style.color = "#328832"
