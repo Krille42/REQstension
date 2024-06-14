@@ -86,7 +86,7 @@
 
       // Show status in injected element
       let statusEl = document.createElement("p")
-      statusEl.style = "width: max-content; top: 1em; margin: auto; padding: 1em; background-color: #666666;"
+      statusEl.style = "width: max-content; top: 1em; margin: auto; padding: 1em; background-color: #444444; filter: brightness(1.5)"
       document.body.prepend(statusEl)
 
       if(window.location.href.includes("https://volvoitsm.service-now.com/com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=e7351f31dbb0a8109507a155059619a3")) {
