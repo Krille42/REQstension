@@ -1,7 +1,50 @@
-@keyframes redFlash {
+#status {
 
-   0% { background-color: rgba(255, 0, 0, 1)}
-   50% { background-color: rgba(255, 0, 0, .1)}
-   100% {background-color: rgba(255, 0, 0, 1)}
+   max-height: 0;
+   padding: 0;
+
+   width: max-content; top: 1em;
+   margin: auto; 
+   
+   background-color: #444444; 
+   filter: brightness(1.5);
+
+   transition: 
+      max-height ease-in-out 1000ms,
+      padding ease-in-out 1000ms;
+
+}
+
+#status.opening {
+
+   max-height: 4em;
+   padding: 1em; 
+
+   transition: 
+      max-height ease-in-out 1000ms,
+      padding ease-in-out 1000ms;
+      
+}
+
+#status.success {
+
+   color: #328832;
+
+}
+
+#status.fail {
+
+   color: #883232;
+
+}
+
+#status.closing {
+
+   max-height: 0;
+   padding: 0;
+
+   transition: 
+      max-height ease-in-out 1000ms,
+      padding ease-in-out 1000ms;
 
 }

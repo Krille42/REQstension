@@ -2,7 +2,7 @@
    "manifest_version": 3,
    "name": "REQ-stension - Request Extension",
    "description": "Simplifying Service Now request forms",
-   "version": "1.3",
+   "version": "1.4",
    "permissions": [
       "offscreen",
       "storage"

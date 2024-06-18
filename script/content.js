@@ -75,7 +75,7 @@
                         document.getElementsByClassName("input-group").item(1).getElementsByTagName("input").item(0).value = service
                         document.getElementsByClassName("input-group").item(1).getElementsByTagName("input").item(0).focus()
 
-                        statusEl.style.color = "#328832"
+                        statusEl.classList.add("success")
                         statusEl.innerHTML = "Done auto-filling fields"
       
                   },500)
@@ -86,8 +86,9 @@
 
       // Show status in injected element
       let statusEl = document.createElement("p")
-      statusEl.style = "width: max-content; top: 1em; margin: auto; padding: 1em; background-color: #444444; filter: brightness(1.5)"
+      statusEl.id = "status"
       document.body.prepend(statusEl)
+      statusEl.classList.toggle("opening")
 
       if(window.location.href.includes("https://volvoitsm.service-now.com/com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=e7351f31dbb0a8109507a155059619a3")) {
 
@@ -117,7 +118,7 @@
 
             }else {
 
-                  statusEl.style.color = "#883232"
+                  statusEl.classList.toggle("fail")
                   statusEl.innerHTML = "RITM not found"
 
             }
@@ -146,14 +147,14 @@
 
                   }else {
 
-                        statusEl.style.color = "#883232"
+                        statusEl.classList.toggle("fail")
                         statusEl.innerHTML = "No task has been created yet, please reload page to check again"
 
                   }
                   
             } catch (err) {
 
-                  statusEl.style.color = "#883232"
+                  statusEl.classList.toggle("fail")
                   statusEl.innerHTML = "No task has been created yet, please reload page to check again"
                   console.log(err)
                   
@@ -198,7 +199,7 @@
                                           let element = document.getElementById("activity-stream-comments-textarea")
                                           element.dispatchEvent(e);
 
-                                          statusEl.style.color = "#328832"
+                                          statusEl.classList.add("success")
                                           statusEl.innerHTML = "Done auto-filling fields"
 
                                     }, 200)
@@ -209,7 +210,7 @@
 
                   }else {
 
-                        statusEl.style.color = "#328832"
+                        statusEl.classList.toggle("success")
                         statusEl.innerHTML = "Task closed"
 
                   }
@@ -218,12 +219,19 @@
 
       }
       
-      // Remove tooltip from display after 10 seconds and reset colour
+      // Remove tooltip from display after ~10 seconds
       setTimeout(() => {
 
-            document.body.removeChild(statusEl)
+            setTimeout(() => {
 
-      }, 10000)
+                  document.body.removeChild(statusEl)
+      
+            }, 1500)
+
+            statusEl.classList.toggle("opening")
+            statusEl.classList.toggle("closing")
+
+      }, 9000)
 })();
 
 // test links
