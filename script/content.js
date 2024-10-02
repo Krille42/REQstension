@@ -20,7 +20,7 @@
             // Check if service is provided
 
             service = (service == "vcn") ? "VCN AD - VCN Active Directory - ds.volvo.net" : service;
-            service = (service == "generic") ? "MyPlace - Production" : service;
+            service = (service == "generic") ? "MyPlace - Windows - Production" : service;
             service = (service == "access") ? "Faros - Instance" : service;
 
             // default to type "other" if none are provided
